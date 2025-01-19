@@ -1,0 +1,17 @@
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\bin\Debug\net8.0\Skinet-Store.Infrastructure.deps.json
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\bin\Debug\net8.0\Skinet-Store.Infrastructure.runtimeconfig.json
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\bin\Debug\net8.0\Skinet-Store.Infrastructure.dll
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\bin\Debug\net8.0\Skinet-Store.Infrastructure.pdb
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\bin\Debug\net8.0\Skinet-Store.Core.dll
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\bin\Debug\net8.0\Skinet-Store.Core.pdb
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.csproj.AssemblyReference.cache
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.AssemblyInfoInputs.cache
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.AssemblyInfo.cs
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.csproj.CoreCompileInputs.cache
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-S.9C1A10B0.Up2Date
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.dll
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\refint\Skinet-Store.Infrastructure.dll
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.pdb
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.genruntimeconfig.cache
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\ref\Skinet-Store.Infrastructure.dll
