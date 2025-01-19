@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Skinet-Store.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c206ba959a419bc676b5c6b203034f75242a1bc7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c253624b0a3337854c658746cb0b3fcd70945035")]
 [assembly: System.Reflection.AssemblyProductAttribute("Skinet-Store.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Skinet-Store.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

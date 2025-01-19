@@ -10,6 +10,6 @@ namespace Skinet_Store.Core.Specification
 {
 	public interface IProductSpecificationFactory
 	{
-		ISpecification<Product> Create(string? brand, string? type , string? sort);
+		ISpecification<Product> Create(ProductSpecificationParameters specificationParameters);
 	}
 }

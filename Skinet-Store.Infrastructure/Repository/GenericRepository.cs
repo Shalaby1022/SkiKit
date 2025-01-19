@@ -19,6 +19,15 @@ namespace Skinet_Store.Infrastructure.Repository
 			_dbSet = _context.Set<T>();
 		}
 
+		public async Task<int> CountAsync(ISpecification<T> spec)
+		{
+			var query = _context.Set<T>().AsQueryable();
+			query = spec.ApplyCriteria(query);
+
+			return await query.CountAsync();
+
+		}
+
 		public async Task<T> CreateAsync(T entity)
 		{
 			if (entity == null) throw new ArgumentNullException(nameof(entity));

@@ -21,7 +21,6 @@ namespace Skinet_Store.Infrastructure.ServiceExtensions
 
 			services.AddDbContext<ApplicationDbContex>(options =>
 					options.UseSqlServer(connectionString)
-					 // instead of returning passed pararmeters as like encode ---@_id__ i want actual value pased so i enable this.
 					 .EnableSensitiveDataLogging());
 
 			services.AddScoped<IProductRepository, ProductRepository>();

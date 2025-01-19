@@ -9,11 +9,17 @@ namespace Skinet_Store.Core.Specification
 {
 	public class ProductSpecification : BaseSpecification<Product>
 	{
-		public ProductSpecification(string? brand, string? type, string? sort) : base(x =>
-			(string.IsNullOrEmpty(brand) || x.Brand == brand) &&
-			(string.IsNullOrEmpty(type) || x.Type == type))
+		public ProductSpecification(ProductSpecificationParameters specificationParameters) : base(x =>
+			(specificationParameters.Brands.Count == 0 || specificationParameters.Brands.Contains(x.Brand)) &&
+			(specificationParameters.Types.Count == 0 || specificationParameters.Types.Contains(x.Type)))
 		{
-			switch(sort)
+
+			// paging 
+			ApplyPaging(specificationParameters.PageSize * (specificationParameters.PageIndex - 1), 
+				specificationParameters.PageSize);
+
+
+			switch (specificationParameters.Sort)
 			{
 				case "priceAsc":
 					AddOrderBy(x => x.Price);

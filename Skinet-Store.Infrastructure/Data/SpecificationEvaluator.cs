@@ -25,6 +25,11 @@ namespace Skinet_Store.Infrastructure.Data
 				query = query.OrderByDescending(spec.OrderByDescending);
 			}
 
+			if (spec.isPagingEnabled)
+			{
+				query = query.Skip(spec.Skip).Take(spec.Take);
+			}
+
 			return query; 
 
 		}
@@ -53,6 +58,11 @@ namespace Skinet_Store.Infrastructure.Data
 			if(spec.isDistinct)
 			{
 				selectedQuery = selectedQuery?.Distinct();
+			}
+
+			if (spec.isPagingEnabled)
+			{
+				query = query.Skip(spec.Skip).Take(spec.Take);
 			}
 
 			return selectedQuery ?? query.Cast<TResult>();

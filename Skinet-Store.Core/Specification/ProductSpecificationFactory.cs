@@ -11,9 +11,9 @@ namespace Skinet_Store.Core.Specification
 {
 	public class ProductSpecificationFactory : IProductSpecificationFactory
 	{
-		public ISpecification<Product> Create(string? brand, string? type, string? sort)
+		public ISpecification<Product> Create(ProductSpecificationParameters specificationParameters)
 		{
-			return new ProductSpecification(brand, type , sort);
+			return new ProductSpecification(specificationParameters);
 		}
 	}
 

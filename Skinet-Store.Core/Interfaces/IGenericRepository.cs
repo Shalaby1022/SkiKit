@@ -22,5 +22,7 @@ namespace Skinet_Store.Core.Interfaces
 		Task<bool> EntityExistsAsync(int id);
 		Task<bool> SaveChangesAsync();
 
+		Task<int> CountAsync(ISpecification<T> spec);
+
 	}
 }
