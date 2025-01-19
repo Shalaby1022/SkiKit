@@ -6,6 +6,7 @@ E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Co
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Core.AssemblyInfoInputs.cache
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Core.AssemblyInfo.cs
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Core.csproj.CoreCompileInputs.cache
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Core.sourcelink.json
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Core.dll
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\refint\Skinet-Store.Core.dll
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Core\obj\Debug\net8.0\Skinet-Store.Core.pdb

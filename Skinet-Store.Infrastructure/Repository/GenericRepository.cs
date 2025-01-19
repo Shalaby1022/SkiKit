@@ -29,8 +29,8 @@ namespace Skinet_Store.Infrastructure.Repository
 
 		public async Task CreateRangeAsync(IEnumerable<T> entities)
 		{
-		 await _dbSet.AddRangeAsync(entities);
-			
+			await _dbSet.AddRangeAsync(entities);
+
 		}
 
 		public async Task<bool> DeleteAsync(T entity)
@@ -56,9 +56,9 @@ namespace Skinet_Store.Infrastructure.Repository
 			return await ApplySpecification(spec).ToListAsync();
 		}
 
-		public async Task<IReadOnlyList<T>> GetAllWithSpecAsync<TResult>(ISpecification<T, TResult> spec)
+		public async Task<IReadOnlyList<TResult>> GetAllWithSpecAsync<TResult>(ISpecification<T, TResult> spec)
 		{
-			return (IReadOnlyList<T>)await ApplySpecification(spec).ToListAsync();
+			return await ApplySpecification(spec).ToListAsync();
 		}
 
 		public async Task<T> GetByIdAsync(int id)
@@ -95,10 +95,11 @@ namespace Skinet_Store.Infrastructure.Repository
 			return SpecificationEvaluator<T>.GetQuery(_dbSet, spec);
 		}
 
-		private IQueryable<TResult> ApplySpecification<TResult>(ISpecification<T , TResult> spec)
-		{
-			return SpecificationEvaluator<T>.GetQuery<T,TResult>(_dbSet, spec);
-		}
 
+		private IQueryable<TResult> ApplySpecification<TResult>(ISpecification<T, TResult> spec)
+		{
+			return SpecificationEvaluator<T>.GetQuery<T, TResult>(_dbSet, spec);
+
+		}
 	}
 }

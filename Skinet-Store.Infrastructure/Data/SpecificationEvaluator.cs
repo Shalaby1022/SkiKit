@@ -25,11 +25,6 @@ namespace Skinet_Store.Infrastructure.Data
 				query = query.OrderByDescending(spec.OrderByDescending);
 			}
 
-			if(spec.isDistinct)
-			{
-				query = query.Distinct();
-			}
-
 			return query; 
 
 		}

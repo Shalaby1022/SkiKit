@@ -10,7 +10,7 @@ namespace Skinet_Store.Core.Specification
 {
 	public class BaseSpecification<T> : ISpecification<T>
 	{
-		protected BaseSpecification() : this(null)
+		protected BaseSpecification() : this(x => true)
 		{
 		}
 		private readonly Expression<Func<T, bool>>? _criteria;
@@ -25,7 +25,7 @@ namespace Skinet_Store.Core.Specification
 
 		public Expression<Func<T, object>>? OrderByDescending { get; private set; }
 
-		public bool isDistinct { get; private set; }
+		
 
 		protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
 		{
@@ -36,18 +36,19 @@ namespace Skinet_Store.Core.Specification
 			OrderByDescending = orderByDescExpression;
 		}
 
-		protected void AddDistinct()
-		{
-			isDistinct = true;
-		}
+		
 	}
 
 	public class BaseSpecification<T, TResult> : BaseSpecification<T>, ISpecification<T, TResult>
 	{
-		public BaseSpecification(Expression<Func<T, TResult>>? select) : base(criteria: null)
+		protected BaseSpecification() : this(null!)
+		{
+		}
+		public BaseSpecification(Expression<Func<T, TResult>>? select) : base()
 		{
 			select = select ?? throw new ArgumentNullException(nameof(select));
 		}
+		public bool isDistinct { get; private set; }
 
 		public Expression<Func<T, TResult>>? Select { get; private set;}
 
@@ -55,5 +56,11 @@ namespace Skinet_Store.Core.Specification
 		{
 			Select = selectExpression;
 		}
+
+		protected void AddDistinct()
+		{
+			isDistinct = true;
+		}
+
 	}
 }

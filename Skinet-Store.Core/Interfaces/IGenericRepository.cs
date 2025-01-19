@@ -12,7 +12,7 @@ namespace Skinet_Store.Core.Interfaces
 		Task<IReadOnlyList<T>> GetAllAsync();
 		Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec);
 		Task<IReadOnlyList<T>> GetEntitiesWithSpec(ISpecification<T> spec);
-		Task<IReadOnlyList<T>> GetAllWithSpecAsync<TResult>(ISpecification<T , TResult> spec);
+		Task<IReadOnlyList<TResult>> GetAllWithSpecAsync<TResult>(ISpecification<T, TResult> spec);
 		Task<IReadOnlyList<T>> GetEntitiesWithSpec<TResult>(ISpecification<T , TResult> spec);
 		Task<T> GetByIdAsync(int id);
 		Task<T> CreateAsync(T entity);

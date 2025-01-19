@@ -13,11 +13,12 @@ namespace Skinet_Store.Core.Interfaces
 		Expression<Func<T, object>>? OrderBy { get; }
 		Expression<Func<T, object>>? OrderByDescending { get; }
 
-		bool isDistinct { get; }
+	
 	}
 
 	public interface ISpecification<T , TResult> : ISpecification<T>
 	{
+		bool isDistinct { get; }
 		Expression<Func<T , TResult>>? Select { get; }
 
 	

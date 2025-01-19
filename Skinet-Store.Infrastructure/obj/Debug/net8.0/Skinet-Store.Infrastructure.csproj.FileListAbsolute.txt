@@ -9,6 +9,7 @@ E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skine
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.AssemblyInfoInputs.cache
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.AssemblyInfo.cs
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.csproj.CoreCompileInputs.cache
+E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.sourcelink.json
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-S.9C1A10B0.Up2Date
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\Skinet-Store.Infrastructure.dll
 E:\.NET\E-CommerceWithAngular\Skinet-Store.Infrastructure\obj\Debug\net8.0\refint\Skinet-Store.Infrastructure.dll
