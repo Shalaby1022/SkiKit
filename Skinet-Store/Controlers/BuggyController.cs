@@ -13,9 +13,6 @@ namespace Skinet_Store.Controlers
 		{
 			return Unauthorized();
 		}
-
-
-
 		[HttpGet("badrequest", Name = nameof(GetBadRequest))]
 		public IActionResult GetBadRequest()
 		{

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Skinet_Store.Core.Interfaces;
 using Skinet_Store.Infrastructure.Data;
 using Skinet_Store.Infrastructure.Repository;
+using Skinet_Store.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,9 @@ namespace Skinet_Store.Infrastructure.ServiceExtensions
 			services.AddScoped<IProductRepository, ProductRepository>();
 
 			services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+			services.AddSingleton<ICartService , CartService>();
+
 
 		}
 	}
