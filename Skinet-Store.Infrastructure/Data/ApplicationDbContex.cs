@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Skinet_Store.Core.Entities;
+using Skinet_Store.Core.Entities.OrderAggregates;
 using Skinet_Store.Infrastructure.Config;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace Skinet_Store.Infrastructure.Data
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Address> Addresses { get; set; }
 		public DbSet<DelieveryMehod> DelieveryMethods { get; set; }
+		public DbSet<OrderItem> OrderItems { get; set; }
+		public DbSet<Order> Orders { get; set; }
 
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
