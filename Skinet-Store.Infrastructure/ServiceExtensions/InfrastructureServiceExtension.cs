@@ -32,7 +32,9 @@ namespace Skinet_Store.Infrastructure.ServiceExtensions
 
 			services.AddSingleton<ICartService, CartService>();
 
-	
+			services.AddScoped<IPaymentService, PaymentService>();
+
+
 
 		}
 	}

@@ -18,6 +18,7 @@ namespace Skinet_Store.Infrastructure.Data
 
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Address> Addresses { get; set; }
+		public DbSet<DelieveryMehod> DelieveryMethods { get; set; }
 
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

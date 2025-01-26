@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Skinet_Store.Infrastructure.Config
 {
+	// How ToGet The Configuration To Work and Get rid of Decimal paiiiiiiiiiiiiiiiiiiin error.
 	public class ProductConfiguration : IEntityTypeConfiguration<Product>
 	{
 		public void Configure(EntityTypeBuilder<Product> builder)

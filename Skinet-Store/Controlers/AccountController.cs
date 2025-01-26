@@ -75,7 +75,7 @@ namespace Skinet_Store.Controlers
 			{
 				user.Email,
 				user.FirstName,
-				user.LastName,
+				user.LastName,	
 				user.Address
 			});
 		}

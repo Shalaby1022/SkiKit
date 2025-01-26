@@ -10,6 +10,10 @@ namespace Skinet_Store.Core.Entities
 	{
 		public required string Id { get; set; }
 		public List<CartItem> Items { get; set; } = new List<CartItem>();
+		public int? DeleieryMethodId { get; set; } 
+		public string? ClientSecret { get; set; }
+
+		public string? PaymentIntentId { get; set; }
 
 
 	}
