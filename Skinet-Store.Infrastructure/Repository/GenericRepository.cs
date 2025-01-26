@@ -85,11 +85,6 @@ namespace Skinet_Store.Infrastructure.Repository
 			return (IReadOnlyList<T>)await ApplySpecification(spec).FirstOrDefaultAsync();
 		}
 
-		public async Task<bool> SaveChangesAsync()
-		{
-			return await _context.SaveChangesAsync() > 0;
-		}
-
 		public async Task<bool> UpdateAsync(T entity)
 		{
 			if (entity == null) throw new ArgumentNullException(nameof(entity));

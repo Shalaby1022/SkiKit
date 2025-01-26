@@ -15,17 +15,18 @@ namespace Skinet_Store.Controller
 	public class ProductController : ControllerBase
 	{
 		//private readonly IProductRepository _productRepository;
-		private readonly IGenericRepository<Product> _productRepository;
+		private readonly IUnitOfWork _unitOfWork;
 		private readonly ILogger<ProductController> _logger;
 		private readonly IProductSpecificationFactory _specificationFactory;
 
 		public ProductController(IGenericRepository<Product> productRepository,
+								IUnitOfWork unitOfWork,
 								 ILogger<ProductController> logger,
 								 IProductSpecificationFactory specificationFactory)
 		{
-			_productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			_specificationFactory = specificationFactory ?? throw new ArgumentNullException(nameof(specificationFactory));
+			_unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 		}
 
 		[HttpGet(Name = nameof(GetAllProducts))]
@@ -40,15 +41,13 @@ namespace Skinet_Store.Controller
 			try
 			{
 				var spec = _specificationFactory.Create(specificationParameters);
-				var productList = await _productRepository.GetAllWithSpecAsync(spec);
-				var count =  await _productRepository.CountAsync(spec);
+				var productList = await _unitOfWork.Repository<Product>().GetAllWithSpecAsync(spec);
+				var count =  await _unitOfWork.Repository<Product>().CountAsync(spec);
 				var pagination = new Pagination<Product>(specificationParameters.PageIndex,
 														specificationParameters.PageSize, 
 														count, 
 														productList);
 
-
-			
 				return Ok(pagination);
 			}
 			catch (Exception ex)
@@ -67,7 +66,7 @@ namespace Skinet_Store.Controller
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public async Task<ActionResult<Product>> GetProductById([FromRoute] int productId)
 		{
-			var product = await _productRepository.GetByIdAsync(productId);
+			var product = await _unitOfWork.Repository<Product>().GetByIdAsync(productId);
 
 			if (product == null)
 			{
@@ -97,7 +96,7 @@ namespace Skinet_Store.Controller
 			{
 				if (CreateNewProduct == null) return BadRequest(ModelState);
 
-				var createdRestauratns = await _productRepository.CreateAsync(product);
+				var createdRestauratns = await _unitOfWork.Repository<Product>().CreateAsync(product);
 
 				return StatusCode(201, createdRestauratns);
 			}
@@ -119,9 +118,9 @@ namespace Skinet_Store.Controller
 		{
 			try
 			{
-				var getProduct = await _productRepository.GetByIdAsync(productId);
+				var getProduct = await _unitOfWork.Repository<Product>().GetByIdAsync(productId);
 
-				var isDeleted = await _productRepository.DeleteAsync(getProduct);
+				var isDeleted = await _unitOfWork.Repository<Product>().DeleteAsync(getProduct);
 				if (!isDeleted)
 				{
 					_logger.LogInformation("Product with ID {.DeleteRestaurantAsync(ProductId)} not found.", productId);
@@ -154,7 +153,7 @@ namespace Skinet_Store.Controller
 			try
 			{
 				if (product == null) return BadRequest(ModelState);
-				var updatedProduct = await _productRepository.UpdateAsync(product);
+				var updatedProduct = await _unitOfWork.Repository<Product>().UpdateAsync(product);
 				return StatusCode(201, updatedProduct);
 			}
 			catch (Exception ex)
@@ -175,7 +174,7 @@ namespace Skinet_Store.Controller
 			try
 			{
 				var spec = new TypeListSpecification();
-				var productTypesList = await _productRepository.GetAllWithSpecAsync<string>(spec);
+				var productTypesList = await _unitOfWork.Repository<Product>().GetAllWithSpecAsync<string>(spec);
 
 				return Ok(productTypesList);
 			}
@@ -197,7 +196,7 @@ namespace Skinet_Store.Controller
 			try
 			{
 				var spec = new BrandListSpecification();
-				var productBrandsList = await _productRepository.GetAllWithSpecAsync<string>(spec);
+				var productBrandsList = await _unitOfWork.Repository<Product>().GetAllWithSpecAsync<string>(spec);
 
 				return Ok(productBrandsList);
 			}
@@ -210,7 +209,7 @@ namespace Skinet_Store.Controller
 
 		private bool ProductExists(int id)
 		{
-			return _productRepository.EntityExistsAsync(id).Result;
+			return _unitOfWork.Repository<Product>().EntityExistsAsync(id).Result;
 		}
 	}
 

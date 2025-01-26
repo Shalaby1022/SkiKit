@@ -20,8 +20,6 @@ namespace Skinet_Store.Core.Interfaces
 		Task<bool> UpdateAsync(T entity);
 		Task<bool> DeleteAsync(T entity);
 		Task<bool> EntityExistsAsync(int id);
-		Task<bool> SaveChangesAsync();
-
 		Task<int> CountAsync(ISpecification<T> spec);
 
 	}

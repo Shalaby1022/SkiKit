@@ -11,17 +11,18 @@ namespace Skinet_Store.Controlers
 	public class PaymentController : ControllerBase
 	{
 		private readonly IPaymentService _paymentService;
+		private readonly IUnitOfWork _unitOfWork;
 		private readonly ICartService _cartService;
-		private readonly IGenericRepository<DelieveryMehod> _delieveryGenericRepo;
 		private readonly IConfiguration _config;
 
-		public PaymentController(IPaymentService paymentService, 
+		public PaymentController(IPaymentService paymentService,
+								IUnitOfWork unitOfWork,
 								ICartService cartService, 
 								IGenericRepository<DelieveryMehod> delieveryGenericRepo)
 		{
-			_paymentService = paymentService;
-			_cartService = cartService;
-			_delieveryGenericRepo = delieveryGenericRepo;
+			_paymentService = paymentService ?? throw new System.ArgumentNullException(nameof(paymentService));
+			_cartService = cartService ?? throw new System.ArgumentNullException(nameof(cartService));
+			_unitOfWork = unitOfWork ?? throw new System.ArgumentNullException(nameof(unitOfWork));
 		}
 
 		[Authorize]
@@ -51,7 +52,7 @@ namespace Skinet_Store.Controlers
 
 		public async Task<ActionResult<IReadOnlyList<DelieveryMehod>>> GetDeliveryMethods()
 		{
-			var deliveryMethods = await _delieveryGenericRepo.GetAllAsync();
+			var deliveryMethods = await _unitOfWork.Repository<DelieveryMehod>().GetAllAsync();
 			return Ok(deliveryMethods);
 		}
 

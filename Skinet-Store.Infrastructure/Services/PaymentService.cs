@@ -14,6 +14,7 @@ namespace Skinet_Store.Infrastructure.Services
 	public class PaymentService : IPaymentService
 	{
 		private readonly IConfiguration _config;
+		private readonly IUnitOfWork _unitOfWork;
 		private readonly ICartService _cartService;
 		private readonly IGenericRepository<Product> _productRepo;
 		private readonly IGenericRepository<DelieveryMehod> _delieveryMethod;
@@ -21,12 +22,14 @@ namespace Skinet_Store.Infrastructure.Services
 
 		public PaymentService(
 			IConfiguration config,
+			IUnitOfWork unitOfWork,
 			ICartService cartService,
 			IGenericRepository<Product> productRepo,
 			IGenericRepository<DelieveryMehod> delieveryMethod,
 			ILogger<PaymentService> logger)
 		{
 			_config = config ?? throw new ArgumentNullException(nameof(config));
+			_unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 			_cartService = cartService ?? throw new ArgumentNullException(nameof(cartService));
 			_productRepo = productRepo ?? throw new ArgumentNullException(nameof(productRepo));
 			_delieveryMethod = delieveryMethod ?? throw new ArgumentNullException(nameof(delieveryMethod));
@@ -53,12 +56,11 @@ namespace Skinet_Store.Infrastructure.Services
 			// Check if DeleieryMethodId is provided
 			if (cart.DeleieryMethodId.HasValue)
 			{
-				var deliveryMethod = await _delieveryMethod.GetByIdAsync((int)cart.DeleieryMethodId);
+				var deliveryMethod = await _unitOfWork.Repository<DelieveryMehod>().GetByIdAsync((int)cart.DeleieryMethodId);
 
 				if (deliveryMethod == null)
 				{
 					_logger.LogError($"Delivery method with ID {cart.DeleieryMethodId} not found.");
-					// Proceed with shippingPrice = 0 instead of returning null
 				}
 				else
 				{
@@ -73,7 +75,7 @@ namespace Skinet_Store.Infrastructure.Services
 			// Validate cart items and update prices if necessary
 			foreach (var item in cart.Items)
 			{
-				var productItem = await _productRepo.GetByIdAsync(item.Id);
+				var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
 
 				if (productItem == null)
 				{

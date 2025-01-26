@@ -34,6 +34,8 @@ namespace Skinet_Store.Infrastructure.ServiceExtensions
 
 			services.AddScoped<IPaymentService, PaymentService>();
 
+			services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
 
 		}
