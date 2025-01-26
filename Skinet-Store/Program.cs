@@ -1,7 +1,11 @@
 
 
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Skinet_Store.Infrastructure.EmailSenderUtility;
 using Skinet_Store.Core.CoreServiceExtensions;
+using Skinet_Store.Core.Entities;
+using Skinet_Store.Infrastructure.Data;
 using Skinet_Store.Infrastructure.ServiceExtensions;
 using Skinet_Store.Middleware;
 using StackExchange.Redis;
@@ -31,10 +35,10 @@ namespace Skinet_Store
 
 			// Register Redis ConnectionMultiplexer as a singleton
 			var redisConnectionString = builder.Configuration.GetConnectionString("Redis")
-		              ?? throw new Exception("Redis connection string is missing");
-		
+					  ?? throw new Exception("Redis connection string is missing");
 
-		    var redis = ConnectionMultiplexer.Connect(redisConnectionString);
+
+			var redis = ConnectionMultiplexer.Connect(redisConnectionString);
 			builder.Services.AddSingleton<IConnectionMultiplexer>(redis);
 
 			// Register IDatabase as a transient service
@@ -44,8 +48,31 @@ namespace Skinet_Store
 				return redis.GetDatabase();
 			});
 
+			#endregion
+
+			#region Identity Service Registration
+
+			// Configuration for the database connection
+			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+			// Add DbContext with SQL Server
+			builder.Services.AddDbContext<ApplicationDbContex>(options =>
+				options.UseSqlServer(connectionString)
+					   .EnableSensitiveDataLogging());
+
+			builder.Services.AddAuthorization();
+
+			// Add Identity services with ApplicationUser and IdentityRole
+			builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
+				.AddEntityFrameworkStores<ApplicationDbContex>()
+				.AddDefaultTokenProviders()
+				.AddSignInManager<SignInManager<ApplicationUser>>();
 
 			#endregion
+
+			builder.Services.AddScoped<Infrastructure.EmailSenderUtility.IEmailSender , EmailSender>();
+			builder.Services.AddScoped<Infrastructure.EmailSenderUtility.IEmailSender<ApplicationUser>, EmailSender>();
+
 
 			builder.Services.AddCors();
 
@@ -68,17 +95,24 @@ namespace Skinet_Store
 
 			app.UseExceptionHandler("/error");
 
-			app.UseCors(x => 
+			app.UseCors(x =>
 						x.AllowAnyHeader()
 						.AllowAnyMethod()
-						.WithOrigins("https://localhost:4200" , "http://localhost:4200"));
+						.WithOrigins("https://localhost:4200", "http://localhost:4200"));
 
 			app.UseHttpsRedirection();
 
+
+			app.UseRouting();
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 
+			app.MapGroup("api")
+				 .WithTags("Account")
+				.MapIdentityApi<ApplicationUser>();
 			app.MapControllers();
+			
 
 			app.Run();
 		}

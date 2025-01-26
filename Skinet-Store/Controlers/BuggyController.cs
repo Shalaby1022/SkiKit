@@ -1,6 +1,8 @@
-﻿ using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skinet_Store.Core.Entities;
+using System.Security.Claims;
 
 namespace Skinet_Store.Controlers
 {
@@ -34,5 +36,15 @@ namespace Skinet_Store.Controlers
 			return Ok();
 		}
 
+		[Authorize]
+		[HttpGet("secret" , Name = nameof(GetSecret))]
+		public IActionResult GetSecret()
+		{
+			var name = User.FindFirst(ClaimTypes.Name)?.Value;
+			var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+			return Ok("Hello " + name + "  Your Id is " + id);
+		}
 	}
 }
