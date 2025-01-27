@@ -1,4 +1,5 @@
-﻿using Skinet_Store.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Skinet_Store.Core.Entities;
 using Skinet_Store.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,10 @@ namespace Skinet_Store.Infrastructure.Data
 				query = query.Skip(spec.Skip).Take(spec.Take);
 			}
 
-			return query; 
+			query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
+			query = spec.IncludeStrings.Aggregate(query, (current, include) => current.Include(include));
 
+			return query;
 		}
 
 		public static IQueryable<TResult> GetQuery<TSpec,TResult>(IQueryable<T> query, ISpecification<T , TResult> spec)
