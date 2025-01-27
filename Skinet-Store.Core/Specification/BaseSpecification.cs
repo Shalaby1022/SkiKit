@@ -31,6 +31,10 @@ namespace Skinet_Store.Core.Specification
 
 		public bool isPagingEnabled { get; private set; }
 
+		public List<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
+
+		public List<string> IncludeStrings { get; } = new List<string>();
+
 		protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
 		{
 			OrderBy = orderByExpression;
@@ -55,6 +59,20 @@ namespace Skinet_Store.Core.Specification
 			}
 
 			return query;
+		}
+
+		public void AddInclude(Expression<Func<T, object>> includeExpression)
+		{
+			if (includeExpression == null)
+			{
+				throw new ArgumentNullException(nameof(includeExpression), "Include expression cannot be null.");
+			}
+
+			Includes.Add(includeExpression);
+		}
+		protected void AddInclude(string includeString)
+		{
+			IncludeStrings.Add(includeString);
 		}
 	}
 

@@ -10,15 +10,12 @@ namespace Skinet_Store.Core.Specification
 	public class ProductSpecification : BaseSpecification<Product>
 	{
 		public ProductSpecification(ProductSpecificationParameters specificationParameters) : base(x =>
-		    (string.IsNullOrEmpty(specificationParameters.SearchQuery) || x.Name.ToLower().Contains(specificationParameters.SearchQuery)) &&
+			(string.IsNullOrEmpty(specificationParameters.SearchQuery) || x.Name.ToLower().Contains(specificationParameters.SearchQuery)) &&
 			(specificationParameters.Brands.Count == 0 || specificationParameters.Brands.Contains(x.Brand)) &&
 			(specificationParameters.Types.Count == 0 || specificationParameters.Types.Contains(x.Type)))
 		{
-
-			// paging 
-			ApplyPaging(specificationParameters.PageSize * (specificationParameters.PageIndex - 1), 
+			ApplyPaging(specificationParameters.PageSize * (specificationParameters.PageIndex - 1),
 				specificationParameters.PageSize);
-
 
 			switch (specificationParameters.Sort)
 			{
