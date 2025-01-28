@@ -62,7 +62,7 @@ namespace Skinet_Store
 
 			builder.Services.AddAuthorization();
 
-			// Add Identity services with ApplicationUser and IdentityRole
+			// Add Id entity services with ApplicationUser and IdentityRole
 			builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
 				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContex>()

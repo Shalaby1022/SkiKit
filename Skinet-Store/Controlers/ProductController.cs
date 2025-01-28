@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using Skinet_Store.Core.Entities;
 using Skinet_Store.Core.Interfaces;
 using Skinet_Store.Core.Specification;
@@ -29,6 +31,7 @@ namespace Skinet_Store.Controller
 			_unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 		}
 
+		[CacheAttributes(600)]
 		[HttpGet(Name = nameof(GetAllProducts))]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status406NotAcceptable)]
@@ -162,7 +165,7 @@ namespace Skinet_Store.Controller
 				return StatusCode(500, "Internal server error");
 			}
 		}
-
+		[CacheAttributes(6000)]
 		[HttpGet("types", Name = nameof(GetProductTypes))]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status406NotAcceptable)]
