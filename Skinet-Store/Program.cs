@@ -64,6 +64,7 @@ namespace Skinet_Store
 
 			// Add Identity services with ApplicationUser and IdentityRole
 			builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
+				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContex>()
 				.AddDefaultTokenProviders()
 				.AddSignInManager<SignInManager<ApplicationUser>>();

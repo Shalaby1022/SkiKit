@@ -76,7 +76,8 @@ namespace Skinet_Store.Controlers
 				user.Email,
 				user.FirstName,
 				user.LastName,	
-				user.Address
+				user.Address,
+				Roles = User.FindFirstValue(ClaimTypes.Role)
 			});
 		}
 

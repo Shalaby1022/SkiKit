@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Skinet_Store.Core.Entities;
 using System.Security.Claims;
@@ -45,6 +46,20 @@ namespace Skinet_Store.Controlers
 
 
 			return Ok("Hello " + name + "  Your Id is " + id);
+		}
+
+		[Authorize(Roles=("Admin"))]
+		[HttpGet("admin-secret", Name = nameof(GetAdminSecret))]
+		public IActionResult GetAdminSecret()
+		{
+			var name = User.FindFirst(ClaimTypes.Name)?.Value;
+			var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var isadmin = User.IsInRole("Admin");
+			var roles = User.FindFirstValue(ClaimTypes.Role);
+
+			return Ok("Hello " + name + "  Your Id is " + id +
+					  " Am i an admin? " + isadmin + 
+					  " so what's my Role here " + roles) ;
 		}
 	}
 }
