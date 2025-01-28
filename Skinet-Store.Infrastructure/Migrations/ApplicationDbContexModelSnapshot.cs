@@ -185,7 +185,7 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("Skinet_Store.Core.Entities.ApplicationUser", b =>
@@ -291,7 +291,7 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DelieveryMethods");
+                    b.ToTable("DelieveryMethods", (string)null);
                 });
 
             modelBuilder.Entity("Skinet_Store.Core.Entities.OrderAggregates.Order", b =>
@@ -327,7 +327,7 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                     b.HasIndex("DelieveryMehodId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Skinet_Store.Core.Entities.OrderAggregates.OrderItem", b =>
@@ -351,7 +351,7 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("Skinet_Store.Core.Entities.Product", b =>
@@ -390,7 +390,7 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -461,32 +461,6 @@ namespace Skinet_Store.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Skinet_Store.Core.Entities.OrderAggregates.PaymentSummary", "paymentSummary", b1 =>
-                        {
-                            b1.Property<int>("OrderId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("Brand")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<int>("ExpiryMonth")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("ExpiryYear")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("Last4")
-                                .HasColumnType("int");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("Orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-
                     b.OwnsOne("Skinet_Store.Core.Entities.OrderAggregates.ShippingAdress", "ShipToAddress", b1 =>
                         {
                             b1.Property<int>("OrderId")
@@ -518,7 +492,33 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                             b1.HasKey("OrderId");
 
-                            b1.ToTable("Orders");
+                            b1.ToTable("Orders", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.OwnsOne("Skinet_Store.Core.Entities.OrderAggregates.PaymentSummary", "paymentSummary", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Brand")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("ExpiryMonth")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("ExpiryYear")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Last4")
+                                .HasColumnType("int");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("OrderId");
@@ -558,7 +558,7 @@ namespace Skinet_Store.Infrastructure.Migrations
 
                             b1.HasKey("OrderItemId");
 
-                            b1.ToTable("OrderItems");
+                            b1.ToTable("OrderItems", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("OrderItemId");

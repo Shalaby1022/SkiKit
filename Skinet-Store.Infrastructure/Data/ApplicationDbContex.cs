@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Skinet_Store.Core.Entities;
 using Skinet_Store.Core.Entities.OrderAggregates;
 using Skinet_Store.Infrastructure.Config;

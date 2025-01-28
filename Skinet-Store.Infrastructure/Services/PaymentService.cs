@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Skinet_Store.Core.Entities;
 using Skinet_Store.Core.Interfaces;
 using Stripe;
+using Stripe.Issuing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,6 +135,22 @@ namespace Skinet_Store.Infrastructure.Services
 			await _cartService.CreateCartAsync(cart);
 
 			return cart;
+		}
+
+		public async Task<string> RefundPayment(string paymentIntentId)
+		{
+			StripeConfiguration.ApiKey = _config["Stripe:SecretKey"];
+
+			var options = new RefundCreateOptions
+			{
+				PaymentIntent = paymentIntentId,
+			};
+
+			var refundServices = new RefundService();
+
+			var result = await refundServices.CreateAsync(options);
+
+			return result.Status;
 		}
 	}
 }
