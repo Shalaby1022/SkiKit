@@ -37,6 +37,10 @@ namespace Skinet_Store.Infrastructure.ServiceExtensions
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
+			// caching 
+			services.AddSingleton<IResponseChacheService, ResponseCacheService>();
+
+
 
 		}
 	}
