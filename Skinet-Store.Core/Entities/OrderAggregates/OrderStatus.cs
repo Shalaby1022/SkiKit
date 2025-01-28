@@ -13,6 +13,9 @@ namespace Skinet_Store.Core.Entities.OrderAggregates
 		PaymentFailed,
 		Accepted,
 		Shipped,
-		Delivered
+		Delivered,
+
+
+		Refunded
 	}
 }
